@@ -1,0 +1,5 @@
+﻿  2072.c
+C:\Users\SDSY\Desktop\Algorithm\2071\2071\Project1\2072.c(23,15): warning C4477: 'fscanf' : 서식 문자열 '%d'에 'int *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'char *'입니다.
+C:\Users\SDSY\Desktop\Algorithm\2071\2071\Project1\2072.c(23,15): message : 서식 문자열에서 '%hhd'을(를) 사용하는 것이 좋습니다.
+C:\Users\SDSY\Desktop\Algorithm\2071\2071\Project1\2072.c(30,31): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Project1.vcxproj -> C:\Users\SDSY\Desktop\Algorithm\2071\2071\x64\Debug\Project1.exe
