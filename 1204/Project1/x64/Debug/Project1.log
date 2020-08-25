@@ -1,0 +1,6 @@
+﻿  1926.c
+C:\Users\SDSY\Desktop\Algorithm\1204\Project1\1926.c(27,18): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Users\SDSY\Desktop\Algorithm\1204\Project1\1926.c(28,56): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Users\SDSY\Desktop\Algorithm\1204\Project1\1926.c(28,11): warning C4473: 'printf': 서식 문자열에 대한 인수가 충분하게 전달되지 않았습니다.
+C:\Users\SDSY\Desktop\Algorithm\1204\Project1\1926.c(28,11): message : 자리 표시자 및 해당 매개 변수에는 variadic 인수가 2개 필요하지만 1개가 제공되었습니다.
+C:\Users\SDSY\Desktop\Algorithm\1204\Project1\1926.c(28,11): message : 누락된 variadic 인수 2이(가) 서식 문자열 '%d'에 필요합니다.
