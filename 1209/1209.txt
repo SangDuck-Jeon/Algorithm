@@ -1,0 +1,81 @@
+#include<iostream>
+
+using namespace std;
+
+int main(int argc, char** argv)
+{
+	int test_case;
+	int T, c, r, c_1, r_1, d, d_1, d_2, a, b, z;
+    int array[100][100] = {0 ,};
+    int row_sum[100] = {0};
+    int sum[4][100] = {0, };
+	int big[4] = {0};
+    int total_big = 0;
+    int temp = 0;
+
+	for(test_case = 1; test_case <= 10; ++test_case)
+	{
+        cin>>T;
+		for(r=0; r<100; r++)	//열 input
+        {
+            for(c=0; c<100; c++) // 행 input
+            {
+                cin>>array[r][c];
+                sum[0][r] += array[r][c];	// 행 합
+            }
+        }
+		
+        for(c_1=0; c_1<100; c_1++)
+        {
+         	for(r_1=0; r_1<100; r_1++)
+            {
+                sum[1][c_1] += array[r_1][c_1];	//열 합
+            }
+        }
+        
+        for(d=0; d<100; d++)
+        {
+            sum[2][d] += array[d][d];	//대각선 합1
+        }
+        
+        for(d_1=0; d_1<100; d_1++)
+        {
+         	for(d_2=99; d_2>=0; d_2--)
+            {
+                sum[3][d_1] += array[d_1][d_2];	//대각선 합2
+            }
+        }
+        big[0] = sum[0][0];
+        big[1] = sum[1][0];
+        big[2] = sum[2][0];
+        big[3] = sum[3][0];
+        for(a=0; a<4; a++)
+        {
+         	for(b=0; b<100; b++)
+            {
+                if(big[a] < sum[a][b+1])
+                {
+                    big[a] = sum[a][b+1];
+                }
+            }
+            if(total_big<big[a])
+                total_big = big[a];
+        }
+
+
+        
+       printf("#%d %d\n", T, total_big);
+        for(r=0; r<4; r++)	//열 input
+        {
+            for(c=0; c<100; c++) // 행 input
+            {
+			 	sum[r][c] =0;
+            }
+             big[r] = 0;
+        }
+        total_big = 0;
+		
+
+	}
+	return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
