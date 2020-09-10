@@ -1,0 +1,23 @@
+#include<iostream>
+
+using namespace std;
+
+int main(int argc, char** argv)
+{
+	int test_case;
+	int T,i ;
+	char array[5]={0};
+	cin>>T;
+
+	for(test_case = 0; test_case <= 4; ++test_case)
+	{
+		for(i=0; i<5; i++)
+        {
+         	if(test_case == i) array[i] = '#';
+            else array[i] = '+'; 
+            printf("%c", array[i]);
+        }
+		printf("\n");
+	}
+	return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
