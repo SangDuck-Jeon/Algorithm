@@ -1,0 +1,60 @@
+#include<iostream>
+
+using namespace std;
+
+int main(int argc, char** argv)
+{
+	int test_case, stop;
+	int dump, i, j, k, t, temp, result =0;
+    int box[101] = {0};
+    int count[101] = {0};
+    int point[101] = {0};
+    int rising[101] = {0};
+    int high, row = 0;
+    
+	for(test_case = 1; test_case <= 10; ++test_case)
+    {
+        cin>>dump;
+        for(i=1; i<101; i++)
+        {
+            cin>>box[i];      
+        }
+		
+        for(i=0; i<dump; i++)
+        {
+         	for(j=1; j<101; j++)	count[box[j]] += 1;
+            //printf("%d ", box[99]);
+            for(k=2; k<=101; k++)	count[k] += count[k-1];
+            
+            for(t=100; t>=1; t--)
+            {
+                //rising[--count[box[t]]] = box[t];
+                rising[count[box[t]]] = box[t];
+                count[box[t]] = count[box[t]]-1;
+                
+            }
+            //printf("%d ", rising[99]);
+            rising[100] -=1;
+            rising[1] += 1;
+            for(j=1; j<101; j++)
+            {
+                count[j] = 0;
+                box[j] = rising[j];
+                
+            }
+            
+        }
+        if(rising[100]<rising[99])	high = rising[99];
+        else high = rising[100];
+        
+        if(rising[1]>rising[2]) row=rising[2];
+        else row=rising[1];
+        
+        result = high - row;
+        //printf("%d ", rising[99]);
+        //printf("%d ", rising[2]);
+        printf("#%d %d \n", test_case, result);
+        
+    }
+	return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
