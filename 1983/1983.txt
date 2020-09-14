@@ -1,0 +1,74 @@
+#include<iostream>
+ 
+using namespace std;
+ 
+int main(int argc, char** argv)
+{
+    int test_case;
+    int T, student_number, Find;
+    int i, j;
+    float score[100][4] = {0,};
+    int count[101] = {0};
+    int sort[100] = {0};     
+    float a[100] = {0};
+    int cnt = 0;
+    float result = 0;
+     
+    cin>>T;
+ 
+    for(test_case = 1; test_case <= T; ++test_case)
+    {
+        cin>>student_number;
+        cin>>Find;
+         
+        for(i=0; i<student_number; i++)
+        {
+            for(j=0; j<3; j++)
+            {
+                cin>>score[i][j];
+            }
+            score[i][3] = score[i][0]*0.35 + score[i][1]*0.45 + score[i][2]*0.2;
+        }
+         
+        for(i=0; i<student_number; i++)
+        {
+            if(score[Find-1][3] < score[i][3])   cnt += 1;
+        }
+        result = (float)(cnt+1)/student_number*10;
+         
+        printf("#%d ", test_case);
+        if(result<=1)    printf("A+");   
+        else if((1<result) && (result<=2))    printf("A0 \n");    
+        else if((2<result) && (result<=3))    printf("A- \n");    
+        else if((3<result) && (result<=4))    printf("B+ \n");
+        else if((4<result) && (result<=5))    printf("B0 \n");
+        else if((5<result) && (result<=6))    printf("B- \n");
+        else if((6<result) && (result<=7))    printf("C+ \n");
+        else if((7<result) && (result<=8))    printf("C0 \n");
+        else if((8<result) && (result<=9))    printf("C- \n");
+        else if((9<result) && (result<=10))   printf("D \n");   
+         
+        /*
+        for(i=0; i<student_number; i++)      count[score[i][4]] += 1;
+        for(j=1; j<=100 ; j++)   count[j] += count[j-1];
+        for(i=student_number-1; i>=0; i--)
+        {
+            sort[count[score[i][4]]] = score[i][4];
+            count[score[i][4]] = count[score[i][4]]-1;
+             
+        }
+        */
+         
+         
+         
+         
+        /* end */
+        for(i=0; i<student_number; i++)
+        {
+            for(j=0; j<4; j++)   score[i][j] = 0;
+        }
+        cnt = 0;
+ 
+    }
+    return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
