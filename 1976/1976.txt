@@ -1,0 +1,31 @@
+#include<iostream>
+
+using namespace std;
+
+int main(int argc, char** argv)
+{
+	int test_case;
+	int T;
+    int hour1, hour2, min1, min2;
+    int final_hour, final_min;
+
+	cin>>T;
+
+	for(test_case = 1; test_case <= T; ++test_case)
+	{
+		cin>>hour1>>min1>>hour2>>min2;
+        if(hour1+hour2 >= 13)	final_hour = hour1+hour2-12;
+        else  	final_hour= hour1+hour2;
+        if(min1+min2 >= 61)	
+        {
+            final_min = min1+min2-60;
+            final_hour += 1;
+        }
+        else	final_min = min1+min2;
+        
+        printf("#%d %d %d\n", test_case, final_hour, final_min);
+            
+
+	}
+	return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
