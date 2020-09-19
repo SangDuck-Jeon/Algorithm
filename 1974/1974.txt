@@ -1,0 +1,115 @@
+#include<iostream>
+ 
+using namespace std;
+int check1(int a[]);
+ 
+int sum=0;
+ 
+int main(int argc, char** argv)
+{
+    int test_case;
+    int T, i, j, a, b, c;
+    int sudoku[9][9], check[10];
+    int chk_result=0, row_result=0, col_result=0, box_result = 0;
+ 
+    cin>>T;
+ 
+    for(test_case = 1; test_case <= T; ++test_case)
+    {
+        for(i=0; i<9; i++)
+        {
+            for(j=0; j<9; j++) cin>>sudoku[i][j]; 
+             
+        }
+        /* 행 검사 */
+        for(i=0; i<9; i++)
+        {
+            for(j=0; j<9; j++) 
+            {
+                check[sudoku[i][j]] = 1;
+                //printf("ck[%d] = %d ", sudoku[i][j], check[sudoku[i][j]]);
+            }
+            chk_result = check1(check);
+            if(chk_result == 9) row_result += 1;
+             
+            sum = 0;
+            for(a=0; a<9; a++) check[a] = 0;
+        }
+         
+        /* 열 검사 */
+        for(i=0; i<9; i++)
+        {
+            for(j=0; j<9; j++) 
+            {
+                check[sudoku[j][i]] = 1;
+                //printf("ck[%d] = %d ", j, check[j]);
+            }
+            chk_result = check1(check);
+            //printf("rslt = %d ", chk_result);
+            if(chk_result == 9) col_result += 1;
+ 
+            sum = 0;
+            for(a=0; a<9; a++) check[a] = 0;
+        }
+        for(a=0; a<3; a++)
+        {
+            for(i=0; i<3; i++)
+            {
+                for(j=0; j<3; j++)
+                {
+                    check[sudoku[j][i+3*a]] = 1;
+                }
+            }
+            chk_result = check1(check);
+            if(chk_result == 9) box_result += 1;
+ 
+            sum = 0;
+            for(i=0; i<9; i++) check[i] = 0;
+        }
+        for(a=0; a<3; a++)
+        {
+            for(i=0; i<3; i++)
+            {
+                for(j=3; j<6; j++)
+                {
+                    check[sudoku[j][i+3*a]] = 1;
+                }
+            }
+            chk_result = check1(check);
+            if(chk_result == 9) box_result += 1;
+ 
+            sum = 0;
+            for(i=0; i<9; i++) check[i] = 0;
+        }
+        for(a=0; a<3; a++)
+        {
+            for(i=0; i<3; i++)
+            {
+                for(j=6; j<9; j++)
+                {
+                    check[sudoku[j][i+3*a]] = 1;
+                }
+            }
+            chk_result = check1(check);
+            if(chk_result == 9) box_result += 1;
+ 
+            sum = 0;
+            for(i=0; i<9; i++) check[i] = 0;
+        }
+        //printf("%d, %d, %d\n", row_result, col_result, box_result);
+        if( (row_result == 9) && (col_result == 9) && (box_result == 9)) printf("#%d 1\n", test_case);
+        else printf("#%d 0\n", test_case);
+         
+        row_result = 0;
+        col_result = 0;
+        box_result = 0;
+    }
+    return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
+int check1(int a[])
+{
+    int k;
+    for(k=0; k<10; k++) sum += a[k];
+    //printf("sum[k] = %d ", a[k]);
+    return sum;
+}
