@@ -1,0 +1,87 @@
+#include<iostream>
+ 
+using namespace std;
+#define UP          1
+#define LEFT        2
+#define RIGHT      3
+int main(int argc, char** argv)
+{
+    int test_case;
+    int T,i,j;
+    int array[101][101] = {0, };
+    int goal = -1, start = 99, direction = 0;
+    int count = 0;
+ 
+ 
+ 
+    for(test_case = 1; test_case <= 10; ++test_case)
+    {
+        cin>>T;
+        for(i=0; i<100; i++) 
+        {
+            for(j=0; j<100; j++) cin>>array[i][j];
+        }
+         
+        for(i=0; i<100; i++) 
+        {
+            if(array[99][i] == 2) goal = i;   
+        }
+        direction = UP;
+ 
+        while(start != 0)
+        {
+            switch(direction){
+                case UP:
+                    //if((goal+1 != 100) || (goal-1 != -1)){
+                    if(array[start][goal+1] == 1) {direction = RIGHT; /*printf("%d,%d,%d ", direction,start,goal);*/}
+                    else if(array[start][goal-1] == 1)    {direction = LEFT;   /*printf("%d ", direction);*/}
+                    else start -= 1;
+                     
+                    break;
+                case LEFT:
+                    if(goal-1 != -1)
+                    {
+                        if(array[start][goal-1] == 0)   
+                        {
+                            direction = UP;
+                            start -= 1;
+                        }
+                        else goal -= 1;
+                    }
+                    else
+                    {
+                        direction = UP;
+                        start -= 1;
+                    }
+                    break;
+                case RIGHT:
+                    if(goal+1 != 100)
+                    {
+                        if(array[start][goal+1] == 0) 
+                        {
+                            direction = UP;
+                            start -= 1;
+                        }
+                        else goal += 1;
+                    }
+                    else
+                    {
+                        direction = UP;
+                        start -= 1;
+                    }
+                    break;
+            }
+ 
+            count += 1;
+           //printf("(%d, %d) ", direction, goal);
+            //printf("%d ", direction);
+        }
+ 
+        //printf("%d, %d", array[100][59], array[94][62]);
+        printf("#%d %d \n", test_case, goal);
+        goal = -1;
+        start = 99;
+ 
+    }
+    return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
