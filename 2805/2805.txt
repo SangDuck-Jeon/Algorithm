@@ -1,0 +1,48 @@
+#include<iostream>
+
+using namespace std;
+
+int main(int argc, char** argv)
+{
+	int test_case;
+	int T, N, i, j, row=1, middle, start, end, sum;
+    char array[49][49] = {0,};
+    int num[49][49] = {0,};
+
+	cin>>T;
+
+	for(test_case = 1; test_case <= T; ++test_case)
+	{
+		cin>>N;
+        for(i=0; i<N; i++)
+        {
+            for(j=0; j<N; j++)	
+            {
+                cin>>array[i][j]; 
+                num[i][j] = array[i][j]-48;
+                //printf("%d ", (num[i][j])); 
+            }
+        }
+		
+        middle = N/2;
+        for(i=0; i<N; i++)
+        {
+            if(i<=N/2)
+            {
+                row+=2;
+                start = middle-i;
+                end = middle+i;
+                for(j=start; j<= end; j++)	sum += num[i][j];  
+            }
+            else
+            {
+                start = middle-(N-1-i);
+                end = middle+(N-1-i);
+                for(j=start; j<= end; j++)	sum += num[i][j];
+            }
+        }
+		printf("#%d %d \n", test_case, sum);
+		sum = 0;
+	}
+	return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
