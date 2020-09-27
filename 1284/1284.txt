@@ -1,0 +1,23 @@
+#include<iostream>
+
+using namespace std;
+
+int main(int argc, char** argv)
+{
+	int test_case;
+	int T, A, B, P, Q,R, S, W;
+
+	cin>>T;
+
+	for(test_case = 1; test_case <= T; ++test_case)
+	{
+        cin>>P>>Q>>R>>S>>W;
+        
+		A = P*W;
+        if(W<=R)	B = Q;
+        else	B = Q+(W-R)*S;
+        if(A<B)	printf("#%d %d\n", test_case, A);
+        else	printf("#%d %d\n", test_case, B);
+	}
+	return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
