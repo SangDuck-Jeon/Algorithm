@@ -1,0 +1,28 @@
+#include<iostream>
+
+using namespace std;
+
+int main(int argc, char** argv)
+{
+	int test_case;
+	int T, sum_day,i ;
+    int monthday[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; 
+    int month[2];
+    int day[2];
+    
+	cin>>T;
+	for(test_case = 1; test_case <= T; ++test_case)
+	{
+		cin>>month[0]>>day[0]>>month[1]>>day[1];
+
+        if(month[0] == month[1])	sum_day = day[1]-day[0]+1;
+        else
+        {
+         	for(i=month[0]; i<=month[1]-1; i++)		sum_day+=monthday[i];  
+            sum_day += day[1]-day[0]+1;
+        }
+		cout<<'#'<<test_case<<' '<<sum_day<<"\n";
+		sum_day = 0;
+	}
+	return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
