@@ -1,0 +1,34 @@
+#include<iostream>
+using namespace std;
+int main(int argc, char** argv)
+{
+	int test_case;
+	int T, N, Ki[10][10]={0,}, i, j, count=1 ;
+    char Ci[10][10]={0,};
+	cin>>T;
+
+	for(test_case = 1; test_case <= T; ++test_case)
+	{
+        cin>>N;
+        printf("#%d\n", test_case);
+        for(i=0; i<N; i++)
+        {
+            cin>>Ci[N][0]>>Ki[N][1];
+            //printf("%c %d \n", Ci[N][0], Ki[N][1]);
+            for(j=0; j<Ki[N][1]; j++)
+            {
+                printf("%c",  Ci[N][0]);
+                count++;
+                if(count == 11)	
+                {	
+                    printf("\n");
+                    count=1;
+                }
+            }
+			
+        }
+        count = 1;
+		printf("\n");
+	}
+	return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
