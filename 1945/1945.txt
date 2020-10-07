@@ -1,0 +1,43 @@
+#include<iostream>
+ 
+using namespace std;
+int cal = 0;
+int check(int n, int z)
+{
+    int result = 0, i;
+    int count = 0;
+    while(result == 0)
+    {
+        i = n%z; 
+        if(i == 0)  
+        {
+            n = n/z;    //printf("n=%d,i=%d \n", n,i);
+            count++;
+        }
+        else result = 1;    //printf("else:i=%d \n", i);}
+    }
+     
+    cal = n;
+    return count;
+}
+int main(int argc, char** argv)
+{
+    int test_case;
+    int T, N, a, b, c, d, e;
+ 
+    cin>>T;
+     
+    for(test_case = 1; test_case <= T; ++test_case)
+    {   printf("#%d ", test_case);
+        cin>>N;
+        e = check(N, 11);
+        d = check(cal, 7);
+        c = check(cal, 5);
+        b = check(cal, 3);
+        a = check(cal, 2);
+        cout<<a<<' '<<b<<' '<<c<<' '<<d<<' '<<e<<'\n';
+         
+    }
+    a=0;b=0;c=0;d=0;e=0;
+    return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
