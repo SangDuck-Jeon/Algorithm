@@ -1,0 +1,53 @@
+#include<iostream>
+
+#define TRUE  1
+#define FALSE	0
+int top = -1, stack_size, overflow, underflow, result = 0;
+char stack[500] = {0};
+
+using namespace std;
+void push(int x)
+{
+    if(top > stack_size)	overflow = 1;
+    else stack[++top] = x;
+}
+void pop(void)
+{
+ 	if(top == -1) underflow = 1;
+    else top -= 1;
+}
+int main(int argc, char** argv)
+{
+	int test_case;
+	int i;
+    char array[500] = {0};
+
+	for(test_case = 1; test_case <= 10; ++test_case)
+	{
+		cin>>stack_size;
+		for(i=0; i<stack_size; i++)	
+        {	
+            cin>>stack[i];
+			if( (stack[i] == 40) ||  (stack[i] == 91) || (stack[i] == 123) || (stack[i] == 60) )		push(stack[i]); 
+            else 
+            {
+            	pop(); 
+                if(stack[i] == 41)
+                {
+                    if(stack[top+1] != stack[i] -1)	result++;
+                }
+                else
+                {
+                    if(stack[top+1] != stack[i] -2)	result++;
+                }
+            }
+                
+        }
+        if(result != 0)	result = FALSE;
+        else result = TRUE;
+
+        printf("#%d %d\n", test_case, result);
+        result = 0; 
+    }
+	return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
