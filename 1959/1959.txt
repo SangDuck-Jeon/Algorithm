@@ -1,0 +1,48 @@
+#include<iostream>
+ 
+using namespace std;
+ 
+int main(int argc, char** argv)
+{
+    int test_case;
+    int T, N, M, A[20], B[20], i, j, multi[20]={0}, big = 0;
+ 
+    cin>>T;
+ 
+    for(test_case = 1; test_case <= T; ++test_case)
+    {
+        cin>>N>>M;
+        for(i=0; i<N; i++)   cin>>A[i]; 
+        for(i=0; i<M; i++)   cin>>B[i];
+        if(N<M)
+        {
+            for(j=0; j<=M-N; j++)
+            {
+ 
+                for(i=0; i<N; i++)
+                {
+                    multi[j] += A[i]*B[i+j];   
+                }
+                if(big<multi[j]) big = multi[j];
+                //printf("%d ", multi[j]);
+            }
+        }
+        else
+        {
+            for(j=0; j<=N-M; j++)
+            {
+ 
+                for(i=0; i<M; i++)
+                {
+                    multi[j] += A[i+j]*B[i];   
+                }
+                if(big<multi[j]) big = multi[j];
+                //printf("%d ", multi[j]);
+            }
+        }
+        printf("#%d %d\n", test_case, big);
+        for(j=0; j<20; j++)  { multi[j] = 0; A[j] = 0; B[j] = 0; }
+        big = 0;
+    }
+    return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
