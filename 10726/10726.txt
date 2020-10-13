@@ -1,0 +1,31 @@
+#include <stdio.h>
+int count = 0, result[32] = {0};
+void func(int m)
+{   
+    if(m == 0) return;
+    result[count] = m%2;
+    count++;
+    m = m/2;
+    func(m);
+}
+int main(void)
+{
+    int test_case;
+    int T, N, M, i, results=0;
+ 
+    setbuf(stdout, NULL);
+    scanf("%d", &T);
+ 
+    for (test_case = 1; test_case <= T; ++test_case)
+    {
+        scanf("%d %d", &N, &M);
+        func(M);
+        for(i=N-1; i>=0; i--)    results += result[i];
+        if(results == N)  printf("#%d ON\n", test_case);
+        else    printf("#%d OFF\n", test_case);
+        for(i=0; i<32; i++)      result[i] = 0;
+        count = 0;
+        results=0;
+    }
+    return 0; //정상종료시 반드시 0을 리턴해야 합니다.
+}
