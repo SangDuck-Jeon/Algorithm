@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main(void)
+{
+	int test_case;
+	int T, i, j, x1=1, x2=4, x3=4, x4=1, y1, y2, y3, y4, Case, Y1[1000], Y2[1000], result=0, t_top, s_top, bottom, t, s, x, y;
+    //double ;
+
+	setbuf(stdout, NULL);
+	scanf("%d", &T);
+
+	for (test_case = 1; test_case <= T; ++test_case)
+	{
+        scanf("%d", &Case);
+        for(i=0; i<Case; i++)
+        {
+            scanf("%d %d", &Y1[i], &Y2[i]);
+        }
+        for(i=0; i<Case-1; i++)
+        {
+         	for(j=i+1; j<Case; j++)
+            {	
+             	y1 = Y1[i];
+                y2 = Y2[i];
+                y3 = Y1[j];
+                y4 = Y2[j];	
+                if(y1 < y3)
+                {
+                 	if(y2 > y4) result++;   
+                }
+                else
+                {
+                 	if(y2 < y4) result++;   
+                }
+                //printf("%d,%d\n", i,result);
+            }  
+        }
+        printf("#%d %d\n", test_case, result);
+        result = 0;
+	}
+	return 0; //정상종료시 반드시 0을 리턴해야 합니다.
+}
