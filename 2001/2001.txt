@@ -1,0 +1,36 @@
+#include<iostream>
+ 
+using namespace std;
+ 
+int main(int argc, char** argv)
+{
+    int test_case;
+    int T, N, M, i, j, a, b, array[16][16] = {0,} ;
+ 
+    cin>>T;
+ 
+    for(test_case = 1; test_case <= T; ++test_case)
+    {
+        int sum[100]={0}, cnt=0, result=0;
+        cin>>N>>M;
+        for(i=0; i<N; i++){
+            for(j=0; j<N; j++) cin>>array[i][j];   
+        }
+ 
+        for(i=0; i<=N-M; i++){
+            for(j=0; j<=N-M; j++)  {
+                for(a=i; a<i+M; a++){
+                    for(b=j; b<j+M; b++)   sum[cnt] += array[a][b];
+                }  
+                cnt++;
+            }
+        }
+        for(i=0; i<cnt; i++)
+        {
+            if(result < sum[i])    result = sum[i];  
+        }
+ 
+        printf("#%d %d\n", test_case, result);
+    }
+    return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
