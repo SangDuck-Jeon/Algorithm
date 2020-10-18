@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main(void)
+{
+	int test_case;
+	int T, A, B, N, big, small;
+
+	setbuf(stdout, NULL);
+	scanf("%d", &T);
+
+	for (test_case = 1; test_case <= T; ++test_case)
+	{
+		scanf("%d %d %d", &N, &A, &B);
+        if(A>B)	big = B;
+        else if(A<B) big = A;
+        else big = A;
+        if(N<=A+B)        small = A+B-N;
+        else small = 0;
+        printf("#%d %d %d \n", test_case, big, small);
+	}
+	return 0; //정상종료시 반드시 0을 리턴해야 합니다.
+}
