@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main(void)
+{
+	int test_case;
+	int T, num_1, num_2,  result_1, result_2;
+    char *num;
+
+	setbuf(stdout, NULL);
+	scanf("%d", &T);
+
+	for (test_case = 1; test_case <= T; ++test_case)
+	{
+        
+		scanf("%s", num);
+        num_1 = (num[0]-48)*10+(num[1]-48);
+        num_2 = (num[2]-48)*10+(num[3]-48);
+        
+		result_1 = ((num_1>=1) && (num_1<=12));
+        result_2 = ( (num_2>=1) && (num_2<=12));
+
+        if((result_1 == 1) && (result_2 == 1)) printf("#%d AMBIGUOUS \n", test_case);
+        else if((result_1 != 1) && (result_2 == 1)) printf("#%d YYMM\n", test_case);
+        else if((result_1 == 1) && (result_2 != 1)) printf("#%d MMYY\n", test_case);
+        else if((result_1 != 1) || (result_2 != 1)) printf("#%d NA\n", test_case); 
+        result_1 = 0;
+        result_2 = 0;
+	}
+	return 0; //정상종료시 반드시 0을 리턴해야 합니다.
+}
