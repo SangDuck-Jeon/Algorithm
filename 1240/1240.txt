@@ -1,0 +1,82 @@
+#include<iostream>
+#include <string.h> 
+using namespace std;
+char PW[7];
+int change[10] = {13, 25, 19, 61, 35, 49, 47, 59, 55, 11};
+int charTobin(char pw[])
+{
+    int a, rsl=0, dec[7];
+    for(a=0; a<7; a++)
+    {
+        dec[a]=pw[a]-'0';
+        rsl+=(1&dec[a])<<6-a;
+    }
+    return rsl;
+}
+
+int check(int pw)
+{
+    int i, res;
+    for(i=0;i<10;i++) 
+    {
+        if(change[i] == pw)	
+        {
+            res = i;
+            break;
+        }
+    }
+    return res;
+}
+
+int main(int argc, char** argv)
+{
+	int test_case;
+	int T, N, M, A, n[8], deci;
+    char i, j, code[100], line[100] = {0,}, a=0, c=0;
+	
+	cin>>T;
+
+	for(test_case = 1; test_case <= T; ++test_case)
+	{
+        char b=0, last_1=0, once = 0;
+        int result = 0;
+        cin>>N>>M;
+		for(i=0; i<N; i++) 
+        {
+            cin>>code; 
+            
+           	for(j=0; j<M; j++) 
+            {
+                if(code[j] == '1') 	
+                {
+                    last_1 = j;
+                 	once = 1;   
+                }
+            }
+            if(once == 1)
+            {
+            	for(j=55; j>=0; j--) 	line[55-j] = code[last_1-j]; 
+                once = 0;
+            }
+            
+        }
+        for(j=0; j<56; j++) 
+        {	
+            PW[a++]=line[j];   
+            if(a==7) 
+            {
+                deci = charTobin(PW);  
+                n[b++] = check(deci);
+                a=0;
+            }
+        }
+        for(i=0; i<8; i++) result+=n[i]; 
+		if( (((n[0]+n[2]+n[4]+n[6])*3+n[1]+n[3]+n[5]+n[7])%10) == 0 )	printf("#%d %d\n", test_case, result);
+        else printf("#%d %d\n", test_case, 0);
+       	b=0;
+        result = 0;
+        last_1 = 0;
+        once = 0;
+	}
+	return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
