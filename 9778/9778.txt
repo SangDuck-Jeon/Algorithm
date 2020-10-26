@@ -1,0 +1,30 @@
+#include<iostream>
+ 
+using namespace std;
+ 
+int main(int argc, char** argv)
+{
+    int test_case;
+    int T, N, i; 
+ 
+    cin>>T;
+ 
+    for(test_case = 1; test_case <= T; ++test_case)
+    {
+        int sel[52]={0,}, num[12]={0,0,4,4,4,4,4,4,4,4,16,4}, sum=0, pos=0, result=0;
+         
+        cin>>N;
+        for(i=0; i<N; i++)   
+        {
+            cin>>sel[i];
+            num[sel[i]] -= 1;
+            sum += sel[i];
+        }
+        pos = 21-sum;
+        for(i=0; i<= pos; i++)   result += num[i];
+        if(result > 52-N-result) printf("#%d GAZUA \n", test_case);
+        else printf("#%d STOP \n", test_case);
+         
+    }
+    return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
