@@ -1,0 +1,31 @@
+#include<iostream>
+ 
+using namespace std;
+ 
+int main(int argc, char** argv)
+{
+    int test_case;
+    int T,D,H,M, D_11, D_last;
+ 
+    cin>>T;
+ 
+    for(test_case = 1; test_case <= T; ++test_case)
+    {
+        cin>>D>>H>>M;
+ 
+            if(D>11)
+            {
+                D_11 = (23-11)*60+(60-11);
+                D_last = (D-12)*24*60+H*60+M;
+                printf("#%d %d\n", test_case, D_11+D_last);    
+            }
+            else if(D==11)
+            {
+                if( (H<11) || (M<11) ) printf("#%d -1 \n", test_case);
+                else printf("#%d %d \n", test_case, (H-11)*60+(M-11));
+            }
+         
+ 
+    }
+    return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
