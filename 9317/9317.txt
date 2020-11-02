@@ -1,0 +1,26 @@
+#include<iostream>
+
+using namespace std;
+
+int main(int argc, char** argv)
+{
+	int test_case;
+	int T, N ;
+
+	cin>>T;
+
+	for(test_case = 1; test_case <= T; ++test_case)
+	{
+        int result=0, i;
+        char origin[100000]={0,}, write[100000]={0,};
+		cin>>N>>origin>>write;
+
+        for(i=0; i<N; i++)
+        {
+         	if(origin[i] == write[i])	result++;   
+        }
+		printf("#%d %d\n", test_case, result);
+
+	}
+	return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
