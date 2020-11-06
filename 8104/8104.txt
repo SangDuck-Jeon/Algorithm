@@ -1,0 +1,36 @@
+#include<iostream>
+
+using namespace std;
+
+int main(int argc, char** argv)
+{
+	int test_case;
+	int T, N, K, i;
+
+	cin>>T;
+
+	for(test_case = 1; test_case <= T; ++test_case)
+	{
+        int group[20]={0,}, way=0, g=0;
+		cin>>N>>K;
+        for(i=1; i<=N*K; i++)
+        {
+            if(way==0)
+            {
+                group[g] += i;
+                if(g==K-1) way = 1;
+                g++;
+            }
+            else if(way==1)
+            {
+                g--;
+             	group[g] += i;
+                if(g==0) way = 0;
+            }
+        }
+        printf("#%d ", test_case);
+        for(i=0; i<K; i++) printf("%d ", group[i]);
+		 printf("\n");
+	}
+	return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
