@@ -1,0 +1,18 @@
+
+#include<cstdio>
+#include<string.h>
+using namespace std;
+
+int main(int argc, char** argv)
+{
+	int test_case;
+	int T;
+	scanf("%d", &T);
+	for(test_case = 1; test_case <= T; ++test_case)
+	{
+        char word1[21]={0,}, word2[21]={0,},word3[21]={0,}, len=0, i;
+		scanf("%s %s %s", word1, word2, word3);
+        printf("#%d %c%c%c\n", test_case, word1[0]-32, word2[0]-32, word3[0]-32);
+	}
+	return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
