@@ -1,0 +1,53 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+ 
+int main(int argc, char** argv)
+{
+    int test_case;
+    int T, i;
+ 
+    cin>>T;
+ 
+    for(test_case = 1; test_case <= T; ++test_case)
+    {
+        char word[1001]={0,};
+        int muti[1000]={0,}, len=0;
+        long result=1;
+        cin>>word;
+        len = strlen(word);
+        for(i=0; i<len; i++)
+        {
+            if(i==0)
+            {
+                if(word[i] == word[i+1])    muti[i] = 1;
+                else muti[i] = 2;
+            }
+            else if(i==len-1)
+            {
+                if(word[i] == word[i-1])    muti[i] = 1;
+                else muti[i] = 2;
+            }
+            else
+            {
+                if(word[i-1]==word[i+1])
+                {
+                    if(word[i-1] == word[i])    muti[i] = 1;   
+                    else muti[i] = 2;
+                }
+                else
+                {
+                    if( (word[i-1] != word[i]) && (word[i+1] != word[i])) muti[i] = 3;   
+                    else if(word[i-1] == word[i]) muti[i] = 2; 
+                    else if(word[i+1] == word[i]) muti[i] = 2; 
+                }
+            }
+            result *= muti[i];
+            result = result%(1000000007);
+        }
+         
+        printf("#%d %d\n", test_case, result);
+ 
+    }
+    return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
