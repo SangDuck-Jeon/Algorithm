@@ -1,0 +1,76 @@
+#include<iostream>
+using namespace std;
+int result[3]={0,};
+int check_day(int array[][3])
+{
+    int day =0;
+    if(array[0][0] > array[1][0])	day = 1;	/* Tomorrow */
+    else if(array[0][0] < array[1][0])	day = 0;	/* Today */
+    else
+    {
+        if(array[0][1] > array[1][1])	day = 1;	/* Tomorrow */
+        else if(array[0][1] < array[1][1])	day = 0;	/* Today */
+        else
+        {
+            if(array[0][2] > array[1][2])	day = 1;	/* Tomorrow */
+        	else if(array[0][2] < array[1][2])	day = 0;	/* Today */
+        }
+    }
+    return day;
+}
+void check_hour(int Tarr[][3], int checkday)
+{
+    int second[2] = {0,}, sec=0;
+    if(checkday == 0)
+    {
+        second[0] = Tarr[0][0]*3600+Tarr[0][1]*60+Tarr[0][2];
+        second[1] = Tarr[1][0]*3600+Tarr[1][1]*60+Tarr[1][2];
+        result[0] = (second[1]-second[0])/3600;
+        result[1] = ((second[1]-second[0])-result[0]*3600)/60;
+        result[2] = second[1]-second[0]-result[0]*3600-result[1]*60;
+    }
+    else
+    {
+		second[0] = Tarr[0][0]*3600+Tarr[0][1]*60+Tarr[0][2];
+        second[1] = Tarr[1][0]*3600+Tarr[1][1]*60+Tarr[1][2];
+        sec = 86400-second[0]+second[1];
+        result[0] = sec/3600;
+        result[1] = ((sec)-result[0]*3600)/60;
+        result[2] = sec-result[0]*3600-result[1]*60;
+    }
+}
+int main(int argc, char** argv)
+{
+	int test_case;
+	int T, i, j;
+	char num[9]={0,};
+    
+	cin>>T;
+
+	for(test_case = 1; test_case <= T; ++test_case)
+	{
+        int a=0, Time[2][3]={0,}, b=0, checked_day=0;
+        char charresult[6] = {0,};
+        for(j=0; j<2; j++)
+        {
+            cin>>num;
+            for(i=0; i<8; i++)
+            {
+                if(num[i]<':')
+                {
+                    if(a == 0)	{  Time[j][b/2] = (num[i]-'0')*10;  a = 1; }
+                    else { Time[j][b/2] += num[i]-'0';  a = 0; }
+                    b++;
+					if(b==6) b=0;
+                }
+            }
+        }
+        checked_day = check_day(Time);
+        check_hour(Time, checked_day);
+    
+        printf("#%d %02d:%02d:%02d\n", test_case, result[0], result[1], result[2]); 
+        for(i=0; i<3; i++) result[i] = 0;
+    }
+
+	return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
