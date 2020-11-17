@@ -1,0 +1,28 @@
+#include<iostream>
+using namespace std;
+int main(int argc, char** argv)
+{
+    int test_case;
+    int T, N, M;
+    cin>>T;
+    for(test_case = 1; test_case <= T; ++test_case)
+    {
+        int solve[20] ={0,}, i=0, j=0, res=0, big=0, same=0;
+        cin>>N>>M;
+        for(i=0; i<N; i++)
+        {
+            for(j=0; j<M; j++)
+            {
+                cin>>res;
+                if(res == 1)    solve[i]++;
+            }
+            if(solve[i] > big) big=solve[i];
+        }
+        for(i=0; i<N; i++)
+        {
+            if(solve[i] == big)  same++;
+        }
+        printf("#%d %d %d\n", test_case, same, big);
+    }
+    return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
