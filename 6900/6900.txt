@@ -1,0 +1,47 @@
+#include<iostream>
+
+using namespace std;
+
+int main(int argc, char** argv)
+{
+	int test_case;
+	int T, N, M, i, j, k;
+
+	cin>>T;
+
+	for(test_case = 1; test_case <= T; ++test_case)
+	{
+        char rottery[100][9]={0,}, rightnumber[9]={0,}, number[1000]={0,}, write[1000][9]={0,} ;
+        int money[100] = {0,}, right_case=0, receivemoney=0;
+		cin>>N>>M;
+		
+        for(i=0; i<N; i++)
+        {
+            cin>>rightnumber>>money[i];
+            for(j=0; j<8; j++)	rottery[i][j] = rightnumber[j];	
+        }
+        for(i=0; i<M; i++)
+        {
+         	cin>>number;
+            for(j=0; j<8; j++)	write[i][j] = number[j];	
+        }
+        for(i=0; i<M; i++)
+        {
+            for(j=0; j<N; j++)
+            {
+                for(k=0; k<8; k++)
+                {
+                    if(rottery[j][k] != '*')
+                    {
+                 		if(write[i][k] != rottery[j][k])   right_case = 1;
+                    }
+                }
+                if(right_case == 0)		receivemoney += money[j];
+                right_case = 0;
+            }
+        }
+        printf("#%d %d\n", test_case, receivemoney);
+        
+	}
+	return 0;//정상종료시 반드시 0을 리턴해야합니다.
+}
